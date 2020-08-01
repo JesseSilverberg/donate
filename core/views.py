@@ -35,7 +35,7 @@ def profile_check(user):
 
 @user_passes_test(profile_check, login_url='/profile')
 def results(request):
-    context = {'result': 'Joe Biden'}
+    context = {'result': 'Joe Biden'+request.user.donator.location}
     return render(request, 'core/results.html', context)
 
 

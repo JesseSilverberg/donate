@@ -30,24 +30,18 @@ class Donator(models.Model):
         return self.user.username
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Donator.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.donator.save()
-
 # @receiver(post_save, sender=User)
-# def update_profile_signal(sender, instance, created, **kwargs):
+# def create_user_profile(sender, instance, created, **kwargs):
 #     if created:
 #         Donator.objects.create(user=instance)
+#
+#
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
 #     instance.donator.save()
 
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Donator.objects.create(user=instance)
-#     instance.profile.save()
+@receiver(post_save, sender=User)
+def update_profile_signal(sender, instance, created, **kwargs):
+    if created:
+        Donator.objects.create(user=instance)
+    instance.donator.save()
