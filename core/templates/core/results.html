@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <main>
+            <h1 class="display-1">Donate Tickets</h1>
+
+            Donate to: {{ result }}
+
+        </main>
+    </div>
+
+{##}
+{#    {% if user.is_authenticated %}#}
+{#        <li>User: {{ user.get_username }}</li>#}
+{#        <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>#}
+{#    {% else %}#}
+{#        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>#}
+{#    {% endif %}#}
+
+
+
+{% endblock content %}
+
